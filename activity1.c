@@ -2,9 +2,39 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <string.h>
+#include <ctype.h>
+
+char S[101];
+
+void show_upper_case_letters(){
+    for(int i = 0; i < strlen(S); i++){
+        if(isupper(S[i]))
+            printf("%c", S[i]);
+    }
+
+    printf("\n");
+}
+
+void show_lower_case_letters(){
+    for(int i = 0; i < strlen(S); i++){
+        if(islower(S[i]))
+            printf("%c", S[i]);
+    }
+
+    printf("\n");
+}
+
+void show_consonants(){
+    for(int i = 0; i < strlen(S); i++){
+        if(S[i] != 'a' && S[i] != 'e' && S[i] != 'i' && S[i] != 'o' && S[i] != 'u' &&
+           S[i] != 'A' &&  S[i] != 'E' && S[i] != 'I' && S[i] != 'O' && S[i] != 'U')
+            printf("%c", S[i]);
+    }
+
+    printf("\n");
+}
 
 int main(){
-    char S[101];
 
     scanf("%s", S);
 
@@ -26,7 +56,7 @@ int main(){
             }
             else{ // child 1005
                 printf("(1005)I'm the child: %d and my parent is (1003) %d\n", getpid(), getppid());
-                printf("Tamanho da string S: %d\n", strlen(S)
+                printf("Tamanho da string S: %d\n", strlen(S));
             }
         }
     }
@@ -48,17 +78,18 @@ int main(){
                 }
                 else{ // child 1007
                     printf("(1007)I'm the child: %d and my parent is (1002) %d\n", getpid(), getppid());
+                    show_consonants();
                 }
 
             }
             else{ // child 1006
                 printf("(1006)I'm the child: %d and my parent is (1002)%d\n", getpid(), getppid());
+                show_lower_case_letters();
             }
         }
         else{ // child 1004
             printf("(1004)I'm the child: %d and my parent is (1002)%d\n", getpid(), getppid());
-
-
+            show_upper_case_letters();
         }
     }
 
