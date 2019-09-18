@@ -17,7 +17,6 @@ void show_upper_case_letters(){
     }
 
     printf("\n");
-    exit(1);
 }
 
 void show_lower_case_letters(){
@@ -29,7 +28,6 @@ void show_lower_case_letters(){
     }
 
     printf("\n");
-    exit(1);
 }
 
 void show_consonants(){
@@ -42,7 +40,37 @@ void show_consonants(){
     }
 
     printf("\n");
-    exit(1);
+}
+
+void execute_1002(){
+        pid_t p1004 = fork(); 
+
+        if(pid1004 == 0) // child 1004
+            signal(SIGTERM, show_upper_case_letters);
+			
+        pid_t pid7 = fork();
+
+        wait(&status);
+
+        pid_t pid6 = fork(); // child 1006
+
+        if(pid6 == 0)
+            kill(getpid(), SIGTERM);
+        if(pid7 == 0) // child 1007
+            kill(getpid(), SIGUSR1);
+
+}
+
+void execute_1003(){
+		int len;
+		pid_t p1005 = fork();
+
+		if(p1005 == 0) // child 1005
+			exit(strlen(S);
+		else{
+			wait(&len);
+			exit(len);
+		}
 }
 
 int main(){
@@ -52,37 +80,23 @@ int main(){
 
     int status;
 
-    scanf(" %s", S);
+    scanf("%s", S);
 
-    pid_t pid1 = fork(); 
+    pid_t p1002 = fork(); 
 
-    if(pid1 == 0){ // child 1002
-        pid_t pid4 = fork(); 
+    if(p1002 == 0) // child 1002
+		execute_1002();
+    else
+        pid_t p1003 = fork(); 
+    
+	if(pid3 == 0) // child 1003
+		execute_1003();
+	
+	sleep(1);
+	wait(&status);
 
-        if(pid4 == 0) // child 1004
-            kill(getpid(), SIGUSR2);
-
-        wait(&status);
-
-        pid_t pid7 = fork();
-
-        if(pid7 == 0) // child 1007
-            kill(getpid(), SIGUSR1);
-
-        wait(&status);
-
-        pid_t pid6 = fork(); // child 1006
-
-        if(pid6 == 0)
-            kill(getpid(), SIGTERM);
-    } 
-    else {
-        pid_t pid3 = fork(); // create - 1003
-
-        if(pid3 == 0){ // child 1005
-            printf("Tamanho da string S: %ld\n", strlen(S));
-        }
-    }
-
+	printf("Tamanho da string S: %d\n", status);
+	
+	sleep(1);
     return 0;
 }
