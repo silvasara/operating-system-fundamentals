@@ -17,6 +17,8 @@ void show_upper_case_letters(){
     }
 
     printf("\n");
+    
+    exit(0);
 }
 
 void show_lower_case_letters(){
@@ -28,6 +30,8 @@ void show_lower_case_letters(){
     }
 
     printf("\n");
+
+    exit(0);
 }
 
 void show_consonants(){
@@ -40,63 +44,74 @@ void show_consonants(){
     }
 
     printf("\n");
+    
+    exit(0);
 }
 
 void execute_1002(){
-        pid_t p1004 = fork(); 
+    pid_t p1006 = fork(); 
+    
+    if(p1006 == 0){ // child 1006
+        signal(SIGUSR2, show_lower_case_letters);
+        pause();
+    }
+    else{
+        sleep(1);
+        kill(p1006, SIGUSR2);
+    
+        pid_t p1007 = fork();
 
-        if(pid1004 == 0) // child 1004
-            signal(SIGTERM, show_upper_case_letters);
-			
-        pid_t pid7 = fork();
-
-        wait(&status);
-
-        pid_t pid6 = fork(); // child 1006
-
-        if(pid6 == 0)
-            kill(getpid(), SIGTERM);
-        if(pid7 == 0) // child 1007
-            kill(getpid(), SIGUSR1);
-
+        if(p1007 == 0){ // child 1007
+            show_consonants();
+        }
+        else{
+            sleep(1);
+            pid_t p1004 = fork(); 
+            if(p1004 == 0){ // child 1004
+                show_upper_case_letters();
+            }
+        }
+    }
 }
 
 void execute_1003(){
-		int len;
-		pid_t p1005 = fork();
+    pid_t p1005 = fork();
 
-		if(p1005 == 0) // child 1005
-			exit(strlen(S);
-		else{
-			wait(&len);
-			exit(len);
-		}
+    if(p1005 == 0){ // child 1005
+        exit(strlen(S));
+    }
+    else{
+        int len;
+        wait(&len);
+        len = WEXITSTATUS(len);
+        exit(len);
+    }
 }
 
 int main(){
-    signal(SIGUSR2, show_lower_case_letters);
-    signal(SIGUSR1, show_consonants);
-    signal(SIGTERM, show_upper_case_letters);
-
-    int status;
-
     scanf("%s", S);
-
-    pid_t p1002 = fork(); 
-
-    if(p1002 == 0) // child 1002
-		execute_1002();
-    else
-        pid_t p1003 = fork(); 
     
-	if(pid3 == 0) // child 1003
-		execute_1003();
-	
-	sleep(1);
-	wait(&status);
+    pid_t p1003 = fork(); 
 
-	printf("Tamanho da string S: %d\n", status);
-	
-	sleep(1);
+	if(p1003 == 0) // child 1003
+		execute_1003();
+    else{
+        int status;
+	    wait(&status);
+        int len = WEXITSTATUS(status);
+	    printf("Tamanho da string S: %d\n", len);
+        
+        pid_t p1002 = fork(); 
+
+        if(p1002 == 0){ // child 1002
+            signal(SIGUSR1, execute_1002);
+            pause();
+        }
+        else{
+            sleep(1);
+            kill(p1002, SIGUSR1);
+        }
+    }
+    
     return 0;
 }
