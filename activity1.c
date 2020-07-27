@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <signal.h>
 
 char S[101];
 

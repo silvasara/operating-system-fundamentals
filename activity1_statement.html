@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Atividade 1 2019-2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="../pandoc.css" />
+</head>
+<body>
+<header>
+<h1 class="title">Atividade 1 2019-2</h1>
+</header>
+<p>Esta atividade faz parte da nota da disciplina e deve ser entregue até o dia 16 de setembro às 10h00 (não serão contabilizadas atividades entregues após este horário). Para entregar esta atividade envie um email para <code>ribas-fso-at1@naquadah.com.br</code></p>
+<p>Esta atividade parte do pressuposto que o aluno já possui conhecimentos sobre <code>fork(2)</code>, <code>signal(2)</code> e <code>wait(2)</code>.</p>
+<p>Faça um programa em C, que gere um conjunto de processos que tenha uma árvore semelhante como da ilustração abaixo:</p>
+<p><img src="exer_fso.png" /></p>
+<p>Além de montar a árvore citada acima, você deve resolver os problemas abaixo:</p>
+<ol type="1">
+<li>O Processo pai de todos, dado por <span class="math inline">1001</span> no exemplo acima, precisa ler, da entrada padrão, uma String <span class="math inline"><em>S</em></span> de tamanho máximo de <span class="math inline">100</span> caracteres.</li>
+</ol>
+<ul>
+<li>Os processos filhos e netos de <span class="math inline">1001</span> devem ser lançados antes ou depois de <span class="math inline">1001</span> ler a string <span class="math inline"><em>S</em></span>?</li>
+</ul>
+<ol start="2" type="1">
+<li>O processo <span class="math inline">1005</span> deve ser capaz de retornar o tamanho da string <span class="math inline"><em>S</em></span>, lida pelo processo <span class="math inline">1001</span>.</li>
+</ol>
+<ul>
+<li>Como o processo <span class="math inline">1001</span> faz para imprimir o tamanho da string <span class="math inline"><em>S</em></span>?</li>
+</ul>
+<ol start="3" type="1">
+<li><p>O processo <span class="math inline">1006</span> deve alterar a string <span class="math inline"><em>S</em></span>, removendo todos os caracteres maiúsculos, e deve imprimir essa nova string a pedido do processo <span class="math inline">1001</span></p></li>
+<li><p>O processo <span class="math inline">1004</span> deve remover os caracteres minúsculos de <span class="math inline"><em>S</em></span></p></li>
+<li><p>O processo <span class="math inline">1007</span> deve remover as vogais de <span class="math inline"><em>S</em></span></p></li>
+</ol>
+<h2 id="cronologia-de-eventos">Cronologia de eventos</h2>
+<p>O seu programa deverá seguir o seguinte roteiro de eventos:</p>
+<ul>
+<li>Ler a string <span class="math inline"><em>S</em></span> da entrada padrão</li>
+<li>Imprimir o tamanho da string <span class="math inline"><em>S</em></span></li>
+<li>Imprimir a string <span class="math inline"><em>S</em></span> sem os caracteres maiúsculos</li>
+<li>Imprimir a string <span class="math inline"><em>S</em></span> sem as vogais</li>
+<li>Imprimir a string <span class="math inline"><em>S</em></span> sem os caracteres minúsculos</li>
+</ul>
+<p>Perceba que a ordem de impressão é estrita, não podendo ser modificada.</p>
+<p>O processo <span class="math inline">1001</span> deve morrer apenas após a conclusão de todas as atividades. Os processos <span class="math inline">1002</span> a <span class="math inline">1007</span> podem morrer assim que cumprirem seu objetivo.</p>
+<p><strong>ATENÇÃO</strong> o processo pai (<span class="math inline">1001</span>) não deve cumprir as tarefas que devem ser delegadas aos seus filhos e netos.</p>
+<div id="footer">
+<p>Bruno Ribas - atividade para os dias 2 e 4 de abril</p>
+</div>
+</body>
+</html>
